@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Healthy Charitable Trust - Donate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="toggleplay.js"></script>
+    <script src="unmute.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+           
+            background-color: #101010;
+            margin: 0;
+            padding: 20px;
+        }
+        .hero {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    top: 100%; /* Center the video */
+    left: 50%;
+    width: 100%;
+    height: auto; /* Allow height to adjust automatically */
+    min-height: 100%; /* Ensure the video covers the banner */
+    min-width: 100%; /* Ensure the video covers the banner */
+    transform: translate(-50%, -50%); /* Center the video */
+    object-fit: cover; /* Cover the banner without distortion */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 50px 20px; /* Adjust padding for text */
+}
+        h1 {
+            font-family: 'Big John', sans-serif; /* Use the Big John font */
+            color: #d6c613ce;
+            font-size: 4em;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Bookman Old Style', Bookman, 'Times New Roman', serif;
+            color: #6f9d47;
+            font-size: 1.5em;
+            margin: 10px 0 20px;
+        }
+        p {
+            font-family: 'Open Sans', sans-serif; /* Use Open Sans for paragraphs */
+    font-weight: 300; /* Light weight */
+    font-style: italic; /* Italic style */
+    font-size: 30px; /* Adjust font size as needed */
+    line-height: 1.5 rem; /* Improve readability */
+    color: #00aef8; /* Change text color if desired */
+        }
+        .services-section {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(20, 0, 16, 0.7);
+    background-size: cover; /* Cover the entire area */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    z-index: 1; /* Position below the text */
+        border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 300px; /* Set a fixed height for the slideshow */
+}
+
+.slide {
+    display: none;
+    height: 100%; /* Ensure slides take full height of the container */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%; /* Maintain full coverage of the container */
+    object-fit: cover; /* Ensure images cover the container without distortion */
+}
+.about-us {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.about-us-box {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background with some transparency */
+    padding: 20px; /* Padding inside the box */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Max width of the box */
+    margin: 0 auto; /* Center the box */
+    text-align: left; /* Align text to the left */
+}
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Adjust as needed */
+            margin: auto;
+            overflow: hidden;
+        }
+        .video-container video {
+            width: 100%;
+            height: auto;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10; /* Ensure the button is above the video */
+        }
+        .circle {
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            background-color: rgba(22, 1, 67, 0.8); /* Light background for visibility */
+            border-radius: 50%; /* Make it circular */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            font-size: 40px; /* Size of the play symbol */
+            color: #e7d51a; /* Play symbol color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add shadow for better visibility */
+        }
+               .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #4cae4c;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            transition: all 0.3s ease;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 400px;
+            animation: slide-in 0.3s forwards;
+        }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <video autoplay loop muted>
+        <source src="./assets/images/video.mp4" type="video/mp4"> <!-- Replace with your video URL -->
+        Your browser does not support the video tag.
+    </video>
+    
+</div>
+<div class="hero-content">
+    <h1>Win Healthy Charitable Trust</h1>
+    <h2>Your Generosity Makes a Difference</h2>
+    <p>Join us in our mission to provide health resources and support to those in need. Together, we can make a significant impact!</p>
+</div>
+<div class="nav-buttons">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='donation.html'">Donate</button>
+    <button onclick="location.href='about.html'">About Us</button>
+    <button onclick="location.href='services.html'">Services</button> <!-- New Services Button -->
+</div>
+
+<div class="services-section">
+    <h2>Our Services</h2>
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="./assets/images/1.png" alt="Image 1"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/2.png" alt="Image 2"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/3.png" alt="Image 3"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/4.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/5.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/6.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/7.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/8.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/9.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/10.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        <div class="slide">
+            <img src="./assets/images/11.png" alt="Image 4"> <!-- Replace with your image URL -->
+        </div>
+        
+    </div>
+   
+
+    <div class="video-container">
+                <h2>FOUNDER</h2>
+            <h2>DR KTR SATYAPRAKASH</h2>
+        <video id="promotional-video" loop autoplay muted controls>
+            <source src="./assets/images/video.mp4" type="video/mp4"> <!-- Replace with your video URL -->
+            Your browser does not support the video tag.
+        </video>
+       
+        <div class="text-overlay">
+            <h2>Join Us in Making a Difference!</h2>
+        </div>
+    </div>
+
+<div class="about-us">
+    <h2>About Us</h2>
+    <p>At Win Healthy Charitable Trust, we are dedicated to supporting the community during times of need. During the COVID-19 pandemic, 
+        we provided masks to paramedical and health staff, ensuring their safety while they cared for others. 
+        We also distributed food and blankets to the underprivileged, helping them through difficult times. 
+        Our commitment to serving and uplifting those in need drives us to plan many more initiatives for the future.
+    </p> 
+        <p>Join us in making a difference!</p>
+</div>
+<div class="container">
+    <h1>Support Our Cause</h1>
+    <p>Your donations help us provide health resources and support to those in need.</p>
+    
+    <form id="donation-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="amount">Donation Amount (INR):</label>
+        <select id="preset-amount" name="preset-amount" onchange="updateAmount()" required>
+            <option value="">Select Amount</option>
+            <option value="1000">1,000</option>
+            <option value="5000">5,000</option>
+            <option value="10000">10,000</option>
+            <option value="50000">50,000</option>
+            <option value="100000">1 Lakh</option>
+            <option value="500000">5 Lakh</option>
+            <option value="1000000">10 Lakhs</option>
+            <option value="10000000">1 Crore</option>
+            <option value="100000000">10 Crores</option>
+            <option value="1000000000">100 Crores</option>
+        </select>
+        
+        <label for="custom-amount">Or Enter Custom Amount:</label>
+        <input type="number" id="custom-amount" name="custom-amount" min="1" oninput="updateAmount()">
+        
+        <input type="button" value="Donate Now" onclick="confirmDonation()">
+    </form>
+</div>
+
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Confirm Your Donation</h2>
+        <p id="confirm-details"></p>
+        <button onclick="payNow()">Confirm Donation</button>
+    </div>
+</div>
+<div class="nav-buttons">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='donation.html'">Donate</button>
+    <button onclick="location.href='about.html'">About Us</button>
+    <button onclick="location.href='services.html'">Services</button> <!-- New Services Button -->
+</div>
+<footer>
+    <p>&copy; 2024 Win Healthy Charitable Trust. All rights reserved.</p>
+</footer>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    const slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex - 1].style.display = "block";  
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
+
+function updateAmount() {
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    if (presetAmount) {
+        document.getElementById("custom-amount").value = '';
+    } else if (customAmount) {
+        document.getElementById("preset-amount").value = '';
+    }
+}
+
+function confirmDonation() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    const amount = presetAmount || customAmount; // Use preset or custom amount
+
+    if (!amount) {
+        alert("Please select or enter a donation amount.");
+        return;
+    }
+
+    // Show confirmation modal
+    const details = `Name: ${name}<br>Email: ${email}<br>Amount: ₹${amount}`;
+    document.getElementById("confirm-details").innerHTML = details;
+    document.getElementById("confirmationModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+function payNow() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    const amount = presetAmount || customAmount; // Use preset or custom amount
+
+    const options = {
+        key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+        amount: amount * 100, // Amount in paise
+        currency: 'INR',
+        name: 'Win Healthy Charitable Trust',
+        description: 'Donation',
+        image: 'https://example.com/logo.png', // URL of your logo
+        handler: function (response) {
+            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+            // Handle payment success: Send payment ID to your backend for verification
+        },
+        prefill: {
+            name: name,
+            email: email,
+        },
+        theme: {
+            color: '#F37254'
+        }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+    
+    // Close modal after payment initiation
+    closeModal();
+}
+</script>
+
+</body>
+</html>

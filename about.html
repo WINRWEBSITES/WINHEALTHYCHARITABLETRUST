@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Healthy Charitable Trust - About Us</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Adjusted for full viewport height */
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 50px 20px;
+            position: relative; /* Position relative for z-index */
+        }
+        h1 {
+            font-family: 'Big John', sans-serif;
+            color: #ffffff;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Bookman Old Style', Bookman, 'Times New Roman', serif;
+            color: #fff;
+            font-size: 1.5em;
+            margin: 10px 0 20px;
+        }
+        p {
+            font-weight: 300;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.5rem;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.7); /* Dark background for contrast */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #ffffff;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="textarea"],
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #4cae4c;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay loop muted>
+        <source src="./assets/images/video.mp4" type="video/mp4"> <!-- Replace with your video URL -->
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='donation.html'">Donate</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='services.html'">Services</button>
+    </div>
+
+    <div class="container about-us">
+        <h1>About</h1><br><h2>Win Healthy Charitable Trust</h2>
+        <p>At Win Healthy Charitable Trust, we are committed to improving the health and wellbeing of our community. Our initiatives include providing essential health resources, supporting underprivileged families, and organizing health camps. Through our efforts, we aim to create a healthier future for everyone.</p>
+        <p>During the COVID-19 pandemic, we distributed masks and food supplies to those in need, ensuring that our community remained safe and supported. Your contributions enable us to continue this vital work. Join us in making a difference!</p>
+    </div>
+
+    <div class="container contact-form">
+        <h2>Contact Us</h2>
+        <form id="contact-form" action="contactform.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        
+            <input type="submit" value="Send Message">
+        </form>
+        <p>If you would like to request our bank account details for donations, please include that in your message.</p>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='donation.html'">Donate</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='services.html'">Services</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Win Healthy Charitable Trust. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function submitContactForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Here, you can handle the form submission (e.g., send data to your server)
+            alert(`Thank you, ${name}! Your message has been sent.`);
+            
+            // Reset the form
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>

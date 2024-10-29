@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Healthy Charitable Trust - Donate</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="toggleplay.js"></script>
+    <script src="unmute.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #221e1e;
+            margin: 0;
+            padding: 20px;
+        }
+        .hero {
+            background-image: url('./assets/images/baground.png');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #fff;
+            margin: 10px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        p {
+            color: #fff;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .services {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .media-box {
+            display: inline-block;
+            width: calc(33.33% - 40px);
+            margin: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .media-box img, .media-box video {
+            width: 100%;
+            height: auto;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .unmute-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            cursor: pointer;
+            display: none; /* Hide initially */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, input[type="text"], input[type="email"], input[type="number"], select, input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #4cae4c;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='donation.html'">Donate</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='services.html'">Services</button>
+    </div>
+
+    <div class="services">
+        <h2>Our Services</h2>
+        <div class="media-box">
+            <img src="./assets/images/1.png" alt="Media 1">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/2.png" alt="Media 2">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/3.png" alt="Media 3">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/4.png" alt="Media 4">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/5.png" alt="Media 5">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/6.png" alt="Media 6">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/7.png" alt="Media 7">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/8.png" alt="Media 8">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/9.png" alt="Media 9">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/10.png" alt="Media 10">
+        </div>
+        <div class="media-box">
+            <img src="./assets/images/11.png" alt="Media 11">
+        </div>
+    </div>
+
+    <div class="video-container">
+        <video id="myVideo" controls autoplay loop muted>
+            <source src="./assets/images/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <img src="./assets/images/silent.png" id="unmuteButton" alt="Unmute" class="unmute-icon" onclick="toggleMute()">
+    </div>
+
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='donation.html'">Donate</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='services.html'">Services</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Win Healthy Charitable Trust. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win Healthy Charitable Trust - Donate</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #221e1e;
+            margin: 0;
+            padding: 20px;
+        }
+        .hero {
+            background-image: url('./assets/images/baground.png'); /* Replace with a suitable image URL */
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #000000;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        h2 {
+            color: #ed0000;
+            font-size: 1.5em;
+            margin: 10px 0 20px;
+        }
+        p {
+            color: #379b09;
+            font-size: 1em;
+            margin: 0;
+        }
+        .services, .video-container, .about-us {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .services img, .video-container video {
+            width: 100%; /* Adjust as needed */
+            max-width: 600px; /* Maximum width */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(148, 144, 144, 0.2);
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #4cae4c;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(49, 15, 15, 0.4);
+            padding-top: 60px;
+            transition: all 0.3s ease;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 80%;
+            max-width: 400px;
+            animation: slide-in 0.3s forwards;
+        }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="nav-buttons">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='donation.html'">Donate</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='services.html'">Services</button> <!-- New Services Button -->
+    </div>
+
+<div class="container">
+    <h2>WIN HEALTHY CHARITABLE TRUST</h2>
+    <h3>Support Our Cause</h3>
+    <p>Your donations help us provide health resources and support to those in need.</p>
+    
+    <form id="donation-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="amount">Donation Amount (INR):</label>
+        <select id="preset-amount" name="preset-amount" onchange="updateAmount()" required>
+            <option value="">Select Amount</option>
+            <option value="1000">1,000</option>
+            <option value="5000">5,000</option>
+            <option value="10000">10,000</option>
+            <option value="50000">50,000</option>
+            <option value="100000">1 Lakh</option>
+            <option value="500000">5 Lakh</option>
+            <option value="1000000">10 Lakh</option>
+        </select>
+        
+        <label for="custom-amount">Or Enter Custom Amount:</label>
+        <input type="number" id="custom-amount" name="custom-amount" min="1" oninput="updateAmount()">
+        
+        <input type="button" value="Donate Now" onclick="confirmDonation()">
+    </form>
+</div>
+
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Confirm Your Donation</h2>
+        <p id="confirm-details"></p>
+        <button onclick="payNow()">Confirm Donation</button>
+    </div>
+</div>
+<div class="nav-buttons">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='donation.html'">Donate</button>
+    <button onclick="location.href='about.html'">About Us</button>
+    <button onclick="location.href='services.html'">Services</button> <!-- New Services Button -->
+</div>
+<footer>
+    <p>&copy; 2024 Win Healthy Charitable Trust. All rights reserved.</p>
+</footer>
+
+<script>
+function updateAmount() {
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    if (presetAmount) {
+        document.getElementById("custom-amount").value = '';
+    } else if (customAmount) {
+        document.getElementById("preset-amount").value = '';
+    }
+}
+
+function confirmDonation() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    const amount = presetAmount || customAmount; // Use preset or custom amount
+
+    // Check if fields are filled
+    if (!name || !email || !amount) {
+        alert("Please fill all fields and select or enter a donation amount.");
+        return;
+    }
+
+    // Show confirmation modal
+    const details = `Name: ${name}<br>Email: ${email}<br>Amount: ₹${amount}`;
+    document.getElementById("confirm-details").innerHTML = details;
+    document.getElementById("confirmationModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("confirmationModal").style.display = "none";
+}
+
+function payNow() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    
+    const presetAmount = document.getElementById("preset-amount").value;
+    const customAmount = document.getElementById("custom-amount").value;
+    
+    const amount = presetAmount || customAmount; // Use preset or custom amount
+
+    const options = {
+        key: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key
+        amount: amount * 100, // Amount in paise
+        currency: 'INR', // Change as needed, can set dynamically
+        name: 'Win Healthy Charitable Trust',
+        description: 'Donation',
+        image: 'https://example.com/logo.png', // URL of your logo
+        handler: function (response) {
+            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+            // Handle payment success here
+        },
+        prefill: {
+            name: name,
+            email: email,
+        },
+        theme: {
+            color: '#5cb85c',
+        }
+    };
+    const rzp1 = new Razorpay(options);
+    rzp1.open();
+    event.preventDefault();
+}
+</script>
+
+</body>
+</html>
