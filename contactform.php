@@ -1,4 +1,3 @@
-<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect and sanitize form data
     $name = htmlspecialchars(trim($_POST['name']));
@@ -34,4 +33,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: index.html");
     exit;
 }
-?>
