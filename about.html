@@ -136,10 +136,23 @@
         <p>During the COVID-19 pandemic, we distributed masks and food supplies to those in need, ensuring that our community remained safe and supported. Your contributions enable us to continue this vital work. Join us in making a difference!</p>
     </div>
 <div class="container contact us">
+      <form action="contact.php" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required></textarea><br><br>
+        
+        <button type="submit">Send</button>
+  
     <div class="iframe-container">
         <h2>Contact Us</h2>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe7ooUwwJmxXxyTKpi6nKoiHJFNJXelglcAgmm0A86tXRWFXQ/viewform?embedded=true" width="640" height="1080" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
     </div>
+            </form>
         <p>If you would like to request our bank account details for donations, please include that in your message.</p>
     </div>
     <div class="nav-buttons">
