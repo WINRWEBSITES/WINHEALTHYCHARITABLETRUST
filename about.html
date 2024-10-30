@@ -153,9 +153,10 @@
         <textarea id="message" name="message" required></textarea><br><br>
         
         <button type="submit">Send</button>
+        <p>If you would like to request our bank account details for donations, please include that in your message.</p>
     </form>
     </div>
-  <p>If you would like to request our bank account details for donations, please include that in your message.</p>
+  
     </div>
     <div class="nav-buttons">
         <button onclick="location.href='index.html'">Home</button>
@@ -168,36 +169,22 @@
     </footer>
     <script>
         function submitContactForm() {
-            const email = document.getElementById('email').value;
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            // Prepare data to send
-            const data = {
-                email: email,
-                name: name,
-                phone: phone,
-                message: message,
-            };
-
-            // Send data using Fetch API
-            fetch('contact.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Message sent successfully!');
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('There was an error sending your message.');
+            // Encode the data for URL
+            const formUrl = 'https://forms.gle/6RitUGh48TjYdnMB6'; // Replace with your Google Form URL
+            const params = new URLSearchParams({
+                'entry.XXXXXX': name,   // Replace XXXXXX with the field ID for the name
+                'entry.YYYYYY': phone,   // Replace YYYYYY with the field ID for the phone number
+                'entry.ZZZZZZ': email,   // Replace ZZZZZZ with the field ID for the email
+                'entry.AAAAAA': message  // Replace AAAAAA with the field ID for the message
             });
+
+            // Redirect to Google Form with the parameters
+            window.location.href = `${formUrl}?${params.toString()}`;
         }
     </script>
 </body>
